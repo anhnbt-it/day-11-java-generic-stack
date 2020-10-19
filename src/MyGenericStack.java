@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 import java.util.LinkedList;
 
 /**
@@ -8,24 +9,31 @@ import java.util.LinkedList;
  */
 public class MyGenericStack<T> {
 
-    LinkedList<T> stack;
+    private LinkedList<T> stack;
 
     public MyGenericStack() {
+        stack = new LinkedList<>();
     }
 
     public void push(T element) {
-        throw new UnsupportedOperationException();
+        stack.addFirst(element);
     }
 
     public T pop() {
-        throw new UnsupportedOperationException();
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return stack.removeFirst();
     }
 
     public int size() {
-        throw new UnsupportedOperationException();
+        return stack.size();
     }
 
     public boolean isEmpty() {
-        throw new UnsupportedOperationException();
+        if (stack.size() == 0) {
+            return true;
+        }
+        return false;
     }
 }
